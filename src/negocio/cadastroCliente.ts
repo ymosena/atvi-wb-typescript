@@ -14,8 +14,20 @@ export default class CadastroCliente extends Cadastro {
     public cadastrar(): void {
         console.log(`\nInício do cadastro do cliente`);
         let nome = this.entrada.receberTexto(`Por favor informe o nome do cliente: `)
-        let nomeSocial = this.entrada.receberTexto(`Por favor informe o nome social do cliente: `)
+        let sobrenome = this.entrada.receberTexto(`Por favor informe o sobrenome do cliente: `)
         let valor = this.entrada.receberTexto(`Por favor informe o número do cpf: `);
+        let selecionegenero = this.entrada.receberNumero(`Por favor, selecione o gênero (1 para Masculino, 2 para Feminino): `);
+        let genero;
+        switch (selecionegenero){
+            case 1:
+                genero = "Masculino"
+                break;
+            case 2:
+                genero = "Feminino"
+                break;
+            default:
+                return;
+        }
         let data = this.entrada.receberTexto(`Por favor informe a data de emissão do cpf, no padrão dd/mm/yyyy: `);
         let partesData = data.split('/')
         let ano = new Number(partesData[2].valueOf()).valueOf()
@@ -23,7 +35,7 @@ export default class CadastroCliente extends Cadastro {
         let dia = new Number(partesData[0].valueOf()).valueOf()
         let dataEmissao = new Date(ano, mes, dia)
         let cpf = new CPF(valor, dataEmissao);
-        let cliente = new Cliente(nome, nomeSocial, cpf);
+        let cliente = new Cliente(nome, sobrenome, cpf, genero);
         this.clientes.push(cliente)
         console.log(`\nCadastro concluído :)\n`);
     }

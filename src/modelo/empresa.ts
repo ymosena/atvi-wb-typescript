@@ -20,4 +20,7 @@ export default class Empresa{
     public get getServicos(){
         return this.servicos
     }
+    public listarPorGenero(genero: string): Cliente[] {
+        return this.clientes.filter((cliente) => cliente.genero === genero);
+      }
 }
