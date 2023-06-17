@@ -8,10 +8,11 @@ export default class SelecionadorProduto {
         this.produtos = produtos;
     }
 
-    public selecionar(cpf: string): Produto | undefined {
-        let produtoAlvo: Produto | undefined = undefined;
+    public selecionar(cpf: string) {
+        let cpfVazio = new CPF("", new Date());
+        let produtoAlvo: Produto | null = null;
 
-        this.produtos.forEach((produto) => {
+        this.produtos.forEach(produto => {
             if (cpf === produto.getCpf().getValor) {
                 produtoAlvo = produto;
             }
